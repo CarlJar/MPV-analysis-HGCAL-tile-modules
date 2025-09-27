@@ -1,0 +1,9 @@
+columns:
+  adc:
+    name: "ADC"
+    res_bit: 10
+    granularity: 8
+  trigtime:
+    name: "Trigger time"
+    res_bit: 8
+    granularity: 1

@@ -1,0 +1,833 @@
+datasets:
+- _configs:
+  - adcthreshold: 148
+    chip: 0
+    half: 0
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 148
+    chip: 0
+    half: 1
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 139
+    chip: 1
+    half: 0
+    trigtimecut_high: 126
+    trigtimecut_low: 121
+  - adcthreshold: 139
+    chip: 1
+    half: 1
+    trigtimecut_high: 126
+    trigtimecut_low: 121
+  _path: CERN_TB_2024_08
+  _run: 2024-08-06_01-53-34_ConvGain4_trim_tot_muons_2trains_scint4only_3Tmagnet
+- _configs:
+  - adcthreshold: 160
+    chip: 0
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 10
+  _path: CERN_TB_2024_09
+  _run: 2024-09-14_23-04-13_beamrun_muon_150
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 0
+    trigtimecut_high: 23
+    trigtimecut_low: 11
+  - adcthreshold: 172
+    chip: 3
+    half: 0
+    trigtimecut_high: 28
+    trigtimecut_low: 16
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 112
+    chip: 3
+    half: 1
+    trigtimecut_high: 27
+    trigtimecut_low: 14
+  - adcthreshold: 160
+    chip: 4
+    half: 0
+    trigtimecut_high: 28
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-16_17-13-51_beamrun_muons
+- _configs:
+  - adcthreshold: 105
+    chip: 2
+    half: 1
+    trigtimecut_high: 15
+    trigtimecut_low: 12
+  - adcthreshold: 108
+    chip: 2
+    half: 0
+    trigtimecut_high: 16
+    trigtimecut_low: 14
+  - adcthreshold: 158
+    chip: 3
+    half: 1
+    trigtimecut_high: 19
+    trigtimecut_low: 18
+  - adcthreshold: 162
+    chip: 3
+    half: 0
+    trigtimecut_high: 21
+    trigtimecut_low: 20
+  - adcthreshold: 157
+    chip: 4
+    half: 0
+    trigtimecut_high: 20
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-16_22-34-48_beamrun_muonss_150
+- _configs:
+  - adcthreshold: 158
+    chip: 4
+    half: 0
+    trigtimecut_high: 24
+    trigtimecut_low: 9
+  - adcthreshold: 110
+    chip: 2
+    half: 1
+    trigtimecut_high: 24
+    trigtimecut_low: 9
+  - adcthreshold: 100
+    chip: 2
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 158
+    chip: 3
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 158
+    chip: 3
+    half: 0
+    trigtimecut_high: 24
+    trigtimecut_low: 9
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_22-31-00_beamrun_electron_200_test_repeater_TC8_correct
+- _configs:
+  - adcthreshold: 155
+    chip: 4
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 11
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 9
+  - adcthreshold: 160
+    chip: 3
+    half: 1
+    trigtimecut_high: 26
+    trigtimecut_low: 9
+  - adcthreshold: 161
+    chip: 3
+    half: 0
+    trigtimecut_high: 26
+    trigtimecut_low: 13
+  - adcthreshold: 109
+    chip: 2
+    half: 1
+    trigtimecut_high: 23
+    trigtimecut_low: 8
+  _path: CERN_TB_2024_09
+  _run: 2024-09-20_10-44-00_beamrun_muon_250_test_repeater_TC8_correct
+- _configs:
+  - adcthreshold: 127
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 109
+    chip: 2
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 167
+    chip: 3
+    half: 1
+    trigtimecut_high: 29
+    trigtimecut_low: 15
+  - adcthreshold: 167
+    chip: 3
+    half: 0
+    trigtimecut_high: 29
+    trigtimecut_low: 15
+  - adcthreshold: 167
+    chip: 4
+    half: 0
+    trigtimecut_high: 28
+    trigtimecut_low: 13
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_21-47-49_beamrun_electron_200_test_repeater
+- _configs:
+  - adcthreshold: 120
+    chip: 2
+    half: 1
+    trigtimecut_high: 26
+    trigtimecut_low: 12
+  - adcthreshold: 112
+    chip: 2
+    half: 0
+    trigtimecut_high: 26
+    trigtimecut_low: 12
+  - adcthreshold: 169
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 15
+  - adcthreshold: 169
+    chip: 3
+    half: 0
+    trigtimecut_high: 28
+    trigtimecut_low: 16
+  - adcthreshold: 164
+    chip: 4
+    half: 0
+    trigtimecut_high: 29
+    trigtimecut_low: 9
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_20-47-19_beamrun_electron_100_test_repeater
+- _configs: null
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_20-36-36_beamrun_electron_100_test_repeater_timingtest
+- _configs:
+  - adcthreshold: 118
+    chip: 2
+    half: 1
+    trigtimecut_high: 24
+    trigtimecut_low: 12
+  - adcthreshold: 0
+    chip: 2
+    half: 0
+    trigtimecut_high: 0
+    trigtimecut_low: 0
+  - adcthreshold: 165
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 15
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 29
+    trigtimecut_low: 16
+  - adcthreshold: 169
+    chip: 4
+    half: 0
+    trigtimecut_high: 29
+    trigtimecut_low: 15
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_18-44-18_beamrun_electron_200
+- _configs:
+  - adcthreshold: 108
+    chip: 2
+    half: 1
+    trigtimecut_high: 18
+    trigtimecut_low: 15
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 18
+    trigtimecut_low: 16
+  - adcthreshold: 159
+    chip: 3
+    half: 1
+    trigtimecut_high: 22
+    trigtimecut_low: 20
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 22
+    trigtimecut_low: 20
+  - adcthreshold: 157
+    chip: 4
+    half: 0
+    trigtimecut_high: 17
+    trigtimecut_low: 14
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_15-11-45_beamrun_muon_250
+- _configs:
+  - adcthreshold: 108
+    chip: 2
+    half: 1
+    trigtimecut_high: 40
+    trigtimecut_low: 19
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 40
+    trigtimecut_low: 19
+  - adcthreshold: 163
+    chip: 3
+    half: 1
+    trigtimecut_high: 40
+    trigtimecut_low: 22
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 40
+    trigtimecut_low: 22
+  - adcthreshold: 156
+    chip: 4
+    half: 0
+    trigtimecut_high: 40
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-19_14-35-41_beamrun_muon_250_timingtest
+- _configs:
+  - adcthreshold: 110
+    chip: 2
+    half: 1
+    trigtimecut_high: 24
+    trigtimecut_low: 11
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 40
+    trigtimecut_low: 30
+  - adcthreshold: 159
+    chip: 3
+    half: 1
+    trigtimecut_high: 27
+    trigtimecut_low: 12
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 26
+    trigtimecut_low: 13
+  - adcthreshold: 162
+    chip: 4
+    half: 0
+    trigtimecut_high: 27
+    trigtimecut_low: 11
+  _path: CERN_TB_2024_09
+  _run: 2024-09-18_20-34-45_beamrun_electrons_200
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 27
+    trigtimecut_low: 13
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 16
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 16
+  - adcthreshold: 165
+    chip: 4
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 13
+  _path: CERN_TB_2024_09
+  _run: 2024-09-18_18-41-07_beamrun_electrons_200_phase_test
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 26
+    trigtimecut_low: 13
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 27
+    trigtimecut_low: 14
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 16
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 17
+  - adcthreshold: 165
+    chip: 4
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-18_14-57-36_beamrun_electrons_200
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 26
+    trigtimecut_low: 13
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 27
+    trigtimecut_low: 13
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 29
+    trigtimecut_low: 16
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 17
+  - adcthreshold: 165
+    chip: 4
+    half: 0
+    trigtimecut_high: 31
+    trigtimecut_low: 17
+  _path: CERN_TB_2024_09
+  _run: 2024-09-18_14-55-16_beamrun_electrons_200_timingtest
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 11
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 15
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 16
+  - adcthreshold: 165
+    chip: 4
+    half: 0
+    trigtimecut_high: 30
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-18_12-46-08_beamrun_electrons_200
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 24
+    trigtimecut_low: 11
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 13
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 26
+    trigtimecut_low: 17
+  - adcthreshold: 164
+    chip: 4
+    half: 0
+    trigtimecut_high: 26
+    trigtimecut_low: 17
+  _path: CERN_TB_2024_09
+  _run: 2024-09-18_12-37-49_beamrun_electrons_200
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 24
+    trigtimecut_low: 12
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 14
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 28
+    trigtimecut_low: 15
+  - adcthreshold: 165
+    chip: 4
+    half: 0
+    trigtimecut_high: 29
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-17_11-15-16_beamrun_electrons_200_newSTCMapping
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 21
+    trigtimecut_low: 11
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 21
+    trigtimecut_low: 11
+  - adcthreshold: 162
+    chip: 3
+    half: 1
+    trigtimecut_high: 21
+    trigtimecut_low: 11
+  - adcthreshold: 163
+    chip: 3
+    half: 0
+    trigtimecut_high: 21
+    trigtimecut_low: 11
+  - adcthreshold: 158
+    chip: 4
+    half: 0
+    trigtimecut_high: 21
+    trigtimecut_low: 11
+  _path: CERN_TB_2024_09
+  _run: 2024-09-17_19-21-01_beamrun_muon_150_1709
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 24
+    trigtimecut_low: 11
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 0
+    chip: 3
+    half: 1
+    trigtimecut_high: 0
+    trigtimecut_low: 0
+  - adcthreshold: 0
+    chip: 3
+    half: 0
+    trigtimecut_high: 0
+    trigtimecut_low: 0
+  - adcthreshold: 0
+    chip: 4
+    half: 0
+    trigtimecut_high: 0
+    trigtimecut_low: 0
+  _path: CERN_TB_2024_09
+  _run: 2024-09-17_10-57-31_beamrun_electrons_200_newSTCMapping_timingtest
+- _configs:
+  - adcthreshold: 112
+    chip: 2
+    half: 1
+    trigtimecut_high: 25
+    trigtimecut_low: 11
+  - adcthreshold: 111
+    chip: 2
+    half: 0
+    trigtimecut_high: 25
+    trigtimecut_low: 12
+  - adcthreshold: 158
+    chip: 3
+    half: 1
+    trigtimecut_high: 28
+    trigtimecut_low: 14
+  - adcthreshold: 164
+    chip: 3
+    half: 0
+    trigtimecut_high: 29
+    trigtimecut_low: 15
+  - adcthreshold: 158
+    chip: 4
+    half: 0
+    trigtimecut_high: 28
+    trigtimecut_low: 15
+  _path: CERN_TB_2024_09
+  _run: 2024-09-16_20-32-33_beamrun_electrons_200
+- _configs:
+  - adcthreshold: 169
+    chip: 4
+    half: 0
+    trigtimecut_high: 27
+    trigtimecut_low: 18
+  - adcthreshold: 167
+    chip: 3
+    half: 0
+    trigtimecut_high: 26
+    trigtimecut_low: 18
+  - adcthreshold: 171
+    chip: 3
+    half: 1
+    trigtimecut_high: 24
+    trigtimecut_low: 17
+  - adcthreshold: 118
+    chip: 2
+    half: 0
+    trigtimecut_high: 20
+    trigtimecut_low: 14
+  - adcthreshold: 130
+    chip: 2
+    half: 1
+    trigtimecut_high: 22
+    trigtimecut_low: 14
+  _path: CERN_TB_2024_09
+  _run: 2024-09-16_15-28-58_beamrun_electrons_200
+- _configs:
+  - adcthreshold: 185
+    chip: 1
+    half: 0
+    trigtimecut_high: 122
+    trigtimecut_low: 119
+  - adcthreshold: 149
+    chip: 1
+    half: 1
+    trigtimecut_high: 120
+    trigtimecut_low: 116
+  - adcthreshold: 153
+    chip: 0
+    half: 1
+    trigtimecut_high: 123
+    trigtimecut_low: 119
+  - adcthreshold: 157
+    chip: 0
+    half: 0
+    trigtimecut_high: 123
+    trigtimecut_low: 119
+  _path: CERN_TB_2024_08
+  _run: 2024-08-03_23-57-30_ConvGain4_trim_tot_120GeV_muon_2xCoincidence
+- _configs:
+  - adcthreshold: 144
+    chip: 0
+    half: 0
+    trigtimecut_high: 124
+    trigtimecut_low: 120
+  - adcthreshold: 144
+    chip: 0
+    half: 1
+    trigtimecut_high: 124
+    trigtimecut_low: 120
+  - adcthreshold: 144
+    chip: 1
+    half: 0
+    trigtimecut_high: 124
+    trigtimecut_low: 120
+  - adcthreshold: 144
+    chip: 1
+    half: 1
+    trigtimecut_high: 124
+    trigtimecut_low: 120
+  _path: CERN_TB_2024_08
+  _run: 2024-08-03_19-04-13_ConvGain4_trim_tot_200GeV_electrons_trigthres
+- _configs:
+  - adcthreshold: 140
+    chip: 0
+    half: 1
+    trigtimecut_high: 120
+    trigtimecut_low: 116
+  - adcthreshold: 140
+    chip: 0
+    half: 0
+    trigtimecut_high: 120
+    trigtimecut_low: 116
+  - adcthreshold: 141
+    chip: 1
+    half: 1
+    trigtimecut_high: 120
+    trigtimecut_low: 116
+  - adcthreshold: 138
+    chip: 1
+    half: 0
+    trigtimecut_high: 120
+    trigtimecut_low: 116
+  _path: CERN_TB_2024_08
+  _run: 2024-08-04_11-59-14_ConvGain4_trim_tot_200GeV_electron_2xCoincidence
+- _configs:
+  - adcthreshold: 158
+    chip: 0
+    half: 0
+    trigtimecut_high: 114
+    trigtimecut_low: 110
+  - adcthreshold: 158
+    chip: 0
+    half: 1
+    trigtimecut_high: 114
+    trigtimecut_low: 110
+  - adcthreshold: 152
+    chip: 1
+    half: 0
+    trigtimecut_high: 113
+    trigtimecut_low: 108
+  - adcthreshold: 152
+    chip: 1
+    half: 1
+    trigtimecut_high: 113
+    trigtimecut_low: 108
+  _path: CERN_TB_2024_08
+  _run: 2024-08-04_16-54-19_ConvGain4_trim_tot_120GeV_muon_2xCoincidence
+- _configs:
+  - adcthreshold: 144
+    chip: 1
+    half: 0
+    trigtimecut_high: 115
+    trigtimecut_low: 110
+  - adcthreshold: 144
+    chip: 1
+    half: 1
+    trigtimecut_high: 115
+    trigtimecut_low: 110
+  - adcthreshold: 151
+    chip: 0
+    half: 0
+    trigtimecut_high: 116
+    trigtimecut_low: 111
+  - adcthreshold: 151
+    chip: 0
+    half: 1
+    trigtimecut_high: 116
+    trigtimecut_low: 111
+  _path: CERN_TB_2024_08
+  _run: 2024-08-04_22-08-43_ConvGain4_trim_tot_120GeV_muon_2xCoincidence_magnet_ramping_down
+- _configs:
+  - adcthreshold: 151
+    chip: 1
+    half: 0
+    trigtimecut_high: 117
+    trigtimecut_low: 113
+  - adcthreshold: 151
+    chip: 1
+    half: 1
+    trigtimecut_high: 117
+    trigtimecut_low: 113
+  - adcthreshold: 161
+    chip: 0
+    half: 0
+    trigtimecut_high: 117
+    trigtimecut_low: 113
+  - adcthreshold: 161
+    chip: 0
+    half: 1
+    trigtimecut_high: 117
+    trigtimecut_low: 113
+  _path: CERN_TB_2024_08
+  _run: 2024-08-04_23-06-35_ConvGain4_trim_tot_120GeV_muon_2xCoincidence_magnet_off
+- _configs:
+  - adcthreshold: 142
+    chip: 0
+    half: 0
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 142
+    chip: 0
+    half: 1
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 142
+    chip: 1
+    half: 0
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 142
+    chip: 1
+    half: 1
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  _path: CERN_TB_2024_08
+  _run: 2024-08-06_07-14-02_ConvGain4_trim_tot_muons_2trains_scint4only_magnet_ramp_down
+- _configs:
+  - adcthreshold: 142
+    chip: 0
+    half: 0
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 142
+    chip: 0
+    half: 1
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 142
+    chip: 1
+    half: 0
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  - adcthreshold: 142
+    chip: 1
+    half: 1
+    trigtimecut_high: 126
+    trigtimecut_low: 122
+  _path: CERN_TB_2024_08
+  _run: 2024-08-06_08-49-25_ConvGain4_trim_tot_muons_2trains_scint4only_magnet_off
+- _configs:
+  - adcthreshold: 143
+    chip: 1
+    half: 0
+    trigtimecut_high: 115
+    trigtimecut_low: 111
+  - adcthreshold: 143
+    chip: 1
+    half: 1
+    trigtimecut_high: 115
+    trigtimecut_low: 111
+  - adcthreshold: 154
+    chip: 0
+    half: 0
+    trigtimecut_high: 107
+    trigtimecut_low: 103
+  - adcthreshold: 154
+    chip: 0
+    half: 1
+    trigtimecut_high: 107
+    trigtimecut_low: 103
+  _path: CERN_TB_2024_08
+  _run: 2024-08-06_14-56-19_ConvGain4_trim_tot_200GeV_2trains_scint4only_3Tmagnet_90deg
+- _configs: []
+  _path: CERN_TB_2024_08
+  _run: 2024-08-05_20-28-05_ConvGain4_trim_tot_200GeV_electrons_2trains_scint4only_3Tmagnet_timingcorrect
+- _configs:
+  - adcthreshold: 127
+    chip: 2
+    half: 1
+    trigtimecut_high: 15
+    trigtimecut_low: 12
+  - adcthreshold: 113
+    chip: 2
+    half: 0
+    trigtimecut_high: 16
+    trigtimecut_low: 14
+  - adcthreshold: 160
+    chip: 3
+    half: 0
+    trigtimecut_high: 19
+    trigtimecut_low: 17
+  - adcthreshold: 160
+    chip: 3
+    half: 1
+    trigtimecut_high: 18
+    trigtimecut_low: 16
+  - adcthreshold: 156
+    chip: 4
+    half: 0
+    trigtimecut_high: 19
+    trigtimecut_low: 16
+  _path: CERN_TB_2024_09
+  _run: 2024-09-21_12-29-11_beamrun_muon_250_magnetOn

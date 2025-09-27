@@ -1,0 +1,24 @@
+output_folder: "/home/carlj/mount/daq/CERN_TB_2024_09_Analysis/"
+
+runs:
+  - "2024-09-16_22-34-48_beamrun_muonss_150"
+  - "2024-09-17_19-21-01_beamrun_muon_150_1709"
+  - "2024-09-19_15-11-45_beamrun_muon_250"
+  - "2024-09-21_12-29-11_beamrun_muon_250_magnetOn"
+
+active_channels:
+  A5:
+    chip: 2
+    channels: [0, 1, 2, 3, 4, 5, 23, 24, 28, 29, 30, 31, 36, 37]
+    pedestal: 0
+    plot_dim: [4, 4]
+  B12_0:
+    chip: 3
+    channels: [9, 11, 29, 35, 38, 39, 49, 60, 66, 67]
+    pedestal: 0
+    plot_dim: [4, 3]
+  B12_1:
+    chip: 4
+    channels: [0, 1, 6, 7]
+    pedestal: 0
+    plot_dim: [2, 2]

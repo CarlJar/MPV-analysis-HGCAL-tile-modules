@@ -1,0 +1,25 @@
+DAQ:
+  99b89b06f97b80bd00edd4eeebe79cbd163e8d63caabba9e27ac2688e1945221:
+    columns:
+    - globalEventId
+    - adc
+    - adcm
+    - trigtime
+    - corruption
+    - channel
+    - half
+    - chip
+    n_files: null
+    pre_cut: (corruption == 0) & (adc > 0) & (adc < 1020) & (channel >= 0) & (channel
+      <= 35) & (chip == 2) & (half == 1) & (trigtime >= 11) & (trigtime < 21) & (adc
+      >= 105) | (corruption == 0) & (adc > 0) & (adc < 1020) & (channel >= 0) & (channel
+      <= 35) & (chip == 2) & (half == 0) & (trigtime >= 11) & (trigtime < 21) & (adc
+      >= 110) | (corruption == 0) & (adc > 0) & (adc < 1020) & (channel >= 0) & (channel
+      <= 35) & (chip == 3) & (half == 1) & (trigtime >= 11) & (trigtime < 21) & (adc
+      >= 158) | (corruption == 0) & (adc > 0) & (adc < 1020) & (channel >= 0) & (channel
+      <= 35) & (chip == 3) & (half == 0) & (trigtime >= 11) & (trigtime < 21) & (adc
+      >= 162) | (corruption == 0) & (adc > 0) & (adc < 1020) & (channel >= 0) & (channel
+      <= 35) & (chip == 4) & (half == 0) & (trigtime >= 11) & (trigtime < 21) & (adc
+      >= 158)
+    preview_size: null
+ECONT: {}

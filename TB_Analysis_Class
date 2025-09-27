@@ -1,0 +1,110 @@
+import argparse
+import yaml
+import os
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+from RunManager import RunManager, dataTupel
+from selection_manager import selection_manager
+from Minuit_Analysis import perform_analysis
+
+def load_config(config_path):
+    with open(config_path, 'r') as file:
+        config = yaml.safe_load(file)
+    return config
+
+def load_data(config_path):
+    config = load_config(config_path)
+    
+    output_folder = config['output_folder']
+    runs = config['runs']
+    active_channels = config['active_channels']
+    
+    for run in runs:
+        run_folder = os.path.join(output_folder, run)
+        if not os.path.exists(run_folder):
+            print(f"Run folder {run_folder} does not exist. Skipping.")
+            continue
+        
+        rm = RunManager(run, ECONT=False)
+        rm.load(
+            columns=dataTupel(
+                daq=[
+                    "adc",
+                    "adcm",  # pedestal subtraction
+                    "trigtime",
+                    "corruption",
+                    "channel",
+                    "half",
+                    "chip",
+                ]
+            ),
+            pre_cut=dataTupel(daq="(corruption == 0) & (adc > 0) & (adc < 1020)"),
+            preCut_trigtimeCut=True,
+            preCut_thresholdCut=True,
+        )
+        
+        rm.daq.loc[:, "adc"] = rm.daq.loc[:, "adc"] - rm.daq.loc[:, "adcm"]
+        
+        selected_items = selection_manager(active_channels, channel=5, chip=2)
+        
+        for tbname, tbconf in selected_items.items():
+            df_tb_chip = rm.daq.query(f"chip == {tbconf['chip']} & adc < 400")
+            
+            plot_dim = tbconf["plot_dim"]
+            fig_width = plot_dim[1] * 6
+            fig_height = plot_dim[0] * 3
+            fig, axs = plt.subplots(*plot_dim, figsize=(fig_width, fig_height))
+            
+            if isinstance(axs, plt.Axes):
+                axs = [axs]
+            elif isinstance(axs, np.ndarray):
+                axs = axs.flatten()
+            
+            plt.subplots_adjust(hspace=0.1, wspace=0.1)
+            
+            for i, ch in enumerate(tbconf["channels"]):
+                print("===============================================")
+                print(tbname, f"channel {ch}")
+                print("===============================================")
+                
+                df_channel = df_tb_chip.query(f"channel == {ch}")
+                
+                if df_channel.empty:
+                    print(f"No data for channel {ch}, skipping this channel.")
+                    continue
+                
+                adc_values_above_pedestal = df_channel["adc"].values[
+                    df_channel["adc"] > tbconf["pedestal"]
+                ]
+                if len(adc_values_above_pedestal) == 0:
+                    print(f"No ADC values above pedestal for channel {ch}. Skipping.")
+                    continue
+                
+                result = perform_analysis(
+                    df_channel,
+                    axs[i],
+                    "adc",
+                    ch,
+                )
+                
+                if result is None:
+                    continue
+                
+                mip_val, mip_err, fit_params, fit_errors, fit_cov, chisq = result
+                axs[i].set_xlim(0, 400)
+            
+            fig.suptitle(f"Chip {tbconf['chip']}", fontsize=16)
+            fig.text(0.5, 0.04, "adc", ha="center", fontsize=12)
+            fig.text(0.0, 0.5, "Counts", va="center", rotation="vertical", fontsize=12)
+            plt.tight_layout(rect=[0, 0.05, 1, 1])
+            fig.savefig(os.path.join(run_folder, f"{tbname}_analysis.png"))
+            plt.close()
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="MPV Analysis Configuration")
+    parser.add_argument('--config', type=str, required=True, help="Path to the configuration YAML file")
+    
+    args = parser.parse_args()
+    load_data(args.config)

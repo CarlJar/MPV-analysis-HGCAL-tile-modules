@@ -1,0 +1,6 @@
+# name this yaml to "runmanager_config.yaml" and change the BASE_PATH
+# set attributes for the runmanager
+runmanager:
+  BASE_PATH: "/home/NAME/mount/daq/CERN_TB_2024_08/"
+  CACHE_PATH: "" # override the path which is used for caching data
+  ignoreDataConfigPath: True #ignore the sub-path which is specified in the dataset_config.yaml
