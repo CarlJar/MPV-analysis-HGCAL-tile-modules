@@ -1,11 +1,15 @@
 """
 Enhanced plotting functionality for thesis-quality figures focused on fit analysis and error estimation.
 """
-from plot_utils import AnalysisPlotter
+
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from plotting_visualization.plot_utils import AnalysisPlotter
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
-from thesis_plotting_config import (
+from plotting_visualization.thesis_plotting_config import (
     COLORS, 
     AXIS_LABELS,
     format_axis_labels,

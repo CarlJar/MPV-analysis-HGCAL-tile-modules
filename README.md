@@ -1,104 +1,169 @@
 
 # MPV Analysis for HGCAL Tile Modules
 
-This repository contains analysis tools for Most Probable Value (MPV) analysis of HGCAL tile modules using muon test beam data.
+This repository contains analysis tools for Most Probable Value (MPV) analysis of HGCAL tile modules using muon test beam data. The analysis uses Landau-Gauss convolution fitting to extract MPV values from ADC distributions.
 
-## 📁 Project Organization
+## Project Structure
 
-The project has been organized into focused folders based on functionality:
+The codebase is organized into focused directories based on functionality:
 
 - **`core_analysis/`** - Essential files for the main Minuit analysis pipeline
-- **`plotting_visualization/`** - All plotting and visualization tools  
+- **`plotting_visualization/`** - Plotting and visualization tools
 - **`comparison_statistics/`** - Statistical comparison tools for different runs
-- **`thesis_figures/`** - Scripts for generating thesis/publication figures
+- **`thesis_figures/`** - Scripts for generating publication-quality figures
 - **`occupancy_studies/`** - Detector occupancy analysis tools
 - **`alternative_analysis/`** - Alternative fitting methods and approaches
 - **`testing_examples/`** - Testing scripts and examples
-- **`utilities/`** - General utility scripts
+- **`utilities/`** - General utility scripts and tools
 - **`config/`** - Configuration files
 - **`cache/`** - Cached data files
 
-📋 **See [FOLDER_ORGANIZATION.md](FOLDER_ORGANIZATION.md) for detailed documentation.**
+See [FOLDER_ORGANIZATION.md](FOLDER_ORGANIZATION.md) for detailed documentation of each directory.
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Running the Main Analysis
 
+Navigate to the core analysis directory and run the main analysis script:
+
 ```bash
-# Navigate to core analysis folder
 cd core_analysis/
-
-# Run analysis for all available runs
 python Minuit_main.py --runs 1 2 3
-
-# Run analysis for specific runs  
-python Minuit_main.py --runs 1
-
-# List available runs
-python Minuit_main.py --list-runs
 ```
 
-### Available Runs
+Available command line options:
+- `--runs 1 2 3` - Process specific runs (default: run 1 only)
+- `--list-runs` - Display available runs and exit
+- `--use-tailcut` - Enable tail cutting in the analysis (default: disabled)
+
+### Available Datasets
+The analysis supports three muon beam datasets:
 1. **Run 1**: 150 MeV muons
-2. **Run 2**: 250 MeV muons
-3. **Run 3**: 250 MeV muons with magnet on
+2. **Run 2**: 250 MeV muons  
+3. **Run 3**: 250 MeV muons with magnetic field
 
-## 🔧 Core Components
+## Core Analysis Components
 
-**RunManager** (in `core_analysis/`)
+### RunManager
+Located in `core_analysis/RunManager.py`, this component handles:
+- Loading ROOT files from test beam data
+- Data caching for faster subsequent access
+- Pre-filtering and quality cuts
+- Column selection and data formatting
 
-**findCuts.py** (in `utilities/`)
+Key features:
+- Automatic caching system to avoid reloading large datasets
+- Configurable pre-cuts for data quality
+- Support for multiple file formats and structures
 
-This tool is made for classify new aquired data and to find and set data-cuts which will then be used by the **RunManager**.
+### Analysis Pipeline
+The main analysis workflow consists of:
+1. **Data Loading**: RunManager loads and caches test beam data
+2. **Channel Selection**: Select specific chips and channels for analysis
+3. **Histogram Creation**: Generate ADC amplitude distributions
+4. **Gaussian Fitting**: Initial parameter estimation
+5. **Langaus Fitting**: Landau-Gauss convolution fit using Minuit
+6. **Bootstrap Analysis**: Error estimation via bootstrap resampling
+7. **Results Storage**: Save comprehensive results for later analysis
 
-Start the tool with `python utilities/findCuts.py` and enter the run-name of the data-set you want to work with. 
-It will load data with the RunManager from file or from cache. Parameter can be modified in findCuts.py line 115-125.
+## Analysis Tools
 
-After loading the data it will plot data for all chip/half combinations. 
+### Cut Optimization (utilities/findCuts.py)
+Interactive tool for optimizing data quality cuts:
 
-To set the data cuts:
-
+```bash
+cd utilities/
+python findCuts.py
 ```
-hover over the plot with your curser to the place you want to set a cut on and press:
-    "y" - for the lower trigtime-cut
-    "x" - for the higher trigtime-cut
-    "c" - for the adc threshold-cut
-    
-    hit "m" to save the cuts for this chip/half while your curser is still over the plot(!)
+
+Usage:
+1. Enter the run name when prompted
+2. View plots for all chip/half combinations
+3. Set cuts interactively:
+   - Press 'y' for lower trigger time cut
+   - Press 'x' for upper trigger time cut  
+   - Press 'c' for ADC threshold cut
+   - Press 'm' to save cuts for current chip/half
+4. Close figures to finish
+
+### Visualization Tools
+Located in `plotting_visualization/`, these tools create plots from saved analysis results:
+
+```bash
+cd plotting_visualization/
+python -c "from plot_utils import plot_from_saved_data; plot_from_saved_data('/path/to/results')"
 ```
 
+### Statistical Comparisons
+Compare MPV values across different beam conditions:
 
-Close all figures to end the program
+```bash
+cd comparison_statistics/
+python Muon_MIP_Comparison_Statistical.py
+```
 
-**Python Environment using Anaconda3**
+## Installation and Setup
 
-How to setup an anaconda3 environment to run the analysis:
+### Python Environment Setup
+The analysis requires Python 3.7+ with scientific computing libraries. We recommend using Anaconda3.
 
-Install anaconda3
-directory:: `/home/USER/anaconda3`
-- download file `Anaconda3-2024.06-1-Linux-x86_64.sh` from https://www.anaconda.com/download/success
-
+#### Installing Anaconda3
+1. Download Anaconda3 installer from https://www.anaconda.com/download/
+2. Install Anaconda3:
 ```bash
 cd ~/Downloads
 chmod +x Anaconda3-2024.06-1-Linux-x86_64.sh
 ./Anaconda3-2024.06-1-Linux-x86_64.sh
 ```
-When followig the instructions, there is the option to run the 'base' conda environment as default in the shell. If you don't run the base environment you have to activate it using `source ~/anaconda3/bin/activate` before using the `conda`-command. 
 
+#### Creating Analysis Environment
 ```bash
-#setup conda environment and activate it
-conda create --name ENV_NAME
-conda activate ENV_NAME
+# Create and activate a new conda environment
+conda create --name hgcal_analysis python=3.9
+conda activate hgcal_analysis
 
-#deactive environment by using:
-conda deactivate
+# Install required packages
+conda install numpy pandas matplotlib pyyaml
+conda install conda-forge::uproot
+conda install root  # ROOT framework and PyROOT
 ```
-current dependencies:
-- numpy
-- pandas
-- uproot: `conda install conda-forge::uproot`
-- matplotlib
-- pyyaml
-- root: `conda install root`  (full root framework and PyRoot)
 
-Full dependencies and versions can be found at `config/environment_config.yml`.
+#### Required Dependencies
+Core dependencies:
+- **numpy** - Numerical computations
+- **pandas** - Data manipulation and analysis
+- **matplotlib** - Plotting and visualization
+- **uproot** - ROOT file I/O in pure Python
+- **scipy** - Scientific computing algorithms
+- **iminuit** - Python interface to Minuit minimizer
+- **landaupy** - Landau and Landau-Gauss distributions
+- **PhyPraKit** - Physics practical toolkit
+
+Optional dependencies:
+- **root** - Full ROOT framework (for legacy utilities)
+- **pyyaml** - Configuration file parsing
+
+Complete dependency information is available in `config/environment_config.yml`.
+
+## Configuration
+
+The analysis behavior is controlled by configuration files in the `config/` directory:
+- `runmanager_config.yaml` - Data paths and caching settings
+- `dataset_config.yaml` - Dataset-specific parameters and cuts
+- `analysis_config.yaml` - Analysis parameters and fit settings
+
+Modify these files to adapt the analysis to your data location and requirements.
+
+## Output Structure
+
+Analysis results are saved in structured format:
+```
+output_directory/
+├── run_name/
+│   └── analysis_results/
+│       ├── complete_results.pkl     # Full analysis data
+│       ├── simplified_results.h5    # Summary statistics
+│       └── simplified_results.csv   # Human-readable summary
+```
+
+The complete results contain all fitting data for later plotting and analysis. The simplified results provide MPV values, errors, and fit quality metrics in tabular format.

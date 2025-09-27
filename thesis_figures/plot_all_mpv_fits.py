@@ -10,16 +10,18 @@ Each panel shows:
 import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
-import os
+import os, sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from thesis_plotting_config import (
+# from plotting_visualization.plot_utils import plot_from_saved_data, AnalysisPlotter
+from plotting_visualization.thesis_plotting_config import (
     COLORS, 
     format_axis_labels,
     add_subplot_label,
     get_figure_dimensions
 )
 
-from enhanced_plotter import ThesisPlotter
+from plotting_visualization.enhanced_plotter import ThesisPlotter
 
 def create_mpv_overview_plot(run_path, output_dir="thesis_figures/mpv_fits"):
     """
