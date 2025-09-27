@@ -1,20 +1,57 @@
 
-**RunManager** 
+# MPV Analysis for HGCAL Tile Modules
 
-is a generic tool to load, cache and pre-cut datasets. See "findCuts.py" (line 114-126) as an example how to use it.
+This repository contains analysis tools for Most Probable Value (MPV) analysis of HGCAL tile modules using muon test beam data.
 
-use:
-1. - create a RunManager
-2. - RunManager.load: choose columns, pre_cut, number of files...
-    
-- unless you force a Reload the RunManager will decide if it takes cached Data or reload the Data
-- after changing the number of files, preview_size etc a forced reload is recommended
+## 📁 Project Organization
 
-**findCuts.py**
+The project has been organized into focused folders based on functionality:
+
+- **`core_analysis/`** - Essential files for the main Minuit analysis pipeline
+- **`plotting_visualization/`** - All plotting and visualization tools  
+- **`comparison_statistics/`** - Statistical comparison tools for different runs
+- **`thesis_figures/`** - Scripts for generating thesis/publication figures
+- **`occupancy_studies/`** - Detector occupancy analysis tools
+- **`alternative_analysis/`** - Alternative fitting methods and approaches
+- **`testing_examples/`** - Testing scripts and examples
+- **`utilities/`** - General utility scripts
+- **`config/`** - Configuration files
+- **`cache/`** - Cached data files
+
+📋 **See [FOLDER_ORGANIZATION.md](FOLDER_ORGANIZATION.md) for detailed documentation.**
+
+## 🚀 Quick Start
+
+### Running the Main Analysis
+
+```bash
+# Navigate to core analysis folder
+cd core_analysis/
+
+# Run analysis for all available runs
+python Minuit_main.py --runs 1 2 3
+
+# Run analysis for specific runs  
+python Minuit_main.py --runs 1
+
+# List available runs
+python Minuit_main.py --list-runs
+```
+
+### Available Runs
+1. **Run 1**: 150 MeV muons
+2. **Run 2**: 250 MeV muons
+3. **Run 3**: 250 MeV muons with magnet on
+
+## 🔧 Core Components
+
+**RunManager** (in `core_analysis/`)
+
+**findCuts.py** (in `utilities/`)
 
 This tool is made for classify new aquired data and to find and set data-cuts which will then be used by the **RunManager**.
 
-Start the tool with `python ./findCuts.py` and enter the run-name of the data-set you want to work with. 
+Start the tool with `python utilities/findCuts.py` and enter the run-name of the data-set you want to work with. 
 It will load data with the RunManager from file or from cache. Parameter can be modified in findCuts.py line 115-125.
 
 After loading the data it will plot data for all chip/half combinations. 
