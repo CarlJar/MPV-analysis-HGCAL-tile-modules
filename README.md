@@ -1,169 +1,258 @@
 
-# MPV Analysis for HGCAL Tile Modules
+# MPV Analysis Package for HGCAL Tile Modules
 
-This repository contains analysis tools for Most Probable Value (MPV) analysis of HGCAL tile modules using muon test beam data. The analysis uses Landau-Gauss convolution fitting to extract MPV values from ADC distributions.
+A complete analysis package for extracting Most Probable Value (MPV) measurements from HGCAL tile module test beam data. The package uses Landau-Gauss convolution fitting with the Minuit minimizer to extract precise MPV values from ADC amplitude distributions.
 
-## Project Structure
+## Package Structure
 
-The codebase is organized into focused directories based on functionality:
+The analysis package is organized as follows:
 
-- **`core_analysis/`** - Essential files for the main Minuit analysis pipeline
-- **`plotting_visualization/`** - Plotting and visualization tools
-- **`comparison_statistics/`** - Statistical comparison tools for different runs
-- **`thesis_figures/`** - Scripts for generating publication-quality figures
-- **`occupancy_studies/`** - Detector occupancy analysis tools
-- **`alternative_analysis/`** - Alternative fitting methods and approaches
-- **`testing_examples/`** - Testing scripts and examples
-- **`utilities/`** - General utility scripts and tools
-- **`config/`** - Configuration files
-- **`cache/`** - Cached data files
+**Core Analysis Files (root directory):**
+- `Minuit_main.py` - Main analysis script
+- `Minuit_Analysis.py` - Core fitting algorithms and analysis functions
+- `RunManager.py` - Data loading, caching, and preprocessing
+- `HistClass.py` - Histogram utilities and data reduction
+- `AnalysisConfig.py` - Analysis configuration management  
+- `selection_manager.py` - Channel and chip selection logic
+- `findCuts.py` - Interactive cut optimization tool
 
-See [FOLDER_ORGANIZATION.md](FOLDER_ORGANIZATION.md) for detailed documentation of each directory.
+**Supporting Directories:**
+- `config/` - Configuration files for runs, datasets, and analysis parameters
+- `plotting_visualization/` - Plotting and visualization tools  
+- `testing_examples/` - Example scripts and validation tools
+- `utilities/` - Data summarization and utility scripts
+- `figures/` - Generated plots and analysis figures
+- `cache/` - Cached data files for faster loading
 
-## Quick Start
+## Quick Start Guide
 
-### Running the Main Analysis
+### 1. Prerequisites and Setup
+Ensure you have the required Python environment (see Installation section below).
 
-Navigate to the core analysis directory and run the main analysis script:
-
-```bash
-cd core_analysis/
-python Minuit_main.py --runs 1 2 3
-```
-
-Available command line options:
-- `--runs 1 2 3` - Process specific runs (default: run 1 only)
-- `--list-runs` - Display available runs and exit
-- `--use-tailcut` - Enable tail cutting in the analysis (default: disabled)
-
-### Available Datasets
-The analysis supports three muon beam datasets:
-1. **Run 1**: 150 MeV muons
-2. **Run 2**: 250 MeV muons  
-3. **Run 3**: 250 MeV muons with magnetic field
-
-## Core Analysis Components
-
-### RunManager
-Located in `core_analysis/RunManager.py`, this component handles:
-- Loading ROOT files from test beam data
-- Data caching for faster subsequent access
-- Pre-filtering and quality cuts
-- Column selection and data formatting
-
-Key features:
-- Automatic caching system to avoid reloading large datasets
-- Configurable pre-cuts for data quality
-- Support for multiple file formats and structures
-
-### Analysis Pipeline
-The main analysis workflow consists of:
-1. **Data Loading**: RunManager loads and caches test beam data
-2. **Channel Selection**: Select specific chips and channels for analysis
-3. **Histogram Creation**: Generate ADC amplitude distributions
-4. **Gaussian Fitting**: Initial parameter estimation
-5. **Langaus Fitting**: Landau-Gauss convolution fit using Minuit
-6. **Bootstrap Analysis**: Error estimation via bootstrap resampling
-7. **Results Storage**: Save comprehensive results for later analysis
-
-## Analysis Tools
-
-### Cut Optimization (utilities/findCuts.py)
-Interactive tool for optimizing data quality cuts:
+### 2. Configure Data Cuts (Required First Step)
+Before running any analysis, you must optimize the data quality cuts:
 
 ```bash
-cd utilities/
 python findCuts.py
 ```
 
-Usage:
-1. Enter the run name when prompted
-2. View plots for all chip/half combinations
-3. Set cuts interactively:
-   - Press 'y' for lower trigger time cut
-   - Press 'x' for upper trigger time cut  
-   - Press 'c' for ADC threshold cut
-   - Press 'm' to save cuts for current chip/half
-4. Close figures to finish
+Follow the interactive prompts to:
+- Enter your run name
+- View data distributions for all detector chips
+- Set trigger time and ADC threshold cuts interactively
+- Save the optimized cuts for each chip/half combination
 
-### Visualization Tools
-Located in `plotting_visualization/`, these tools create plots from saved analysis results:
+**Important:** This step is mandatory and must be completed before running the main analysis.
+
+### 3. Run Main Analysis
+
+```bash
+python Minuit_main.py --runs 1 2 3
+```
+
+**Command Line Options:**
+- `--runs 1 2 3` - Process specific runs (default: run 1 only)
+- `--list-runs` - Display available runs and exit  
+- `--use-tailcut` - Enable gradient-based tail cutting (default: disabled)
+
+**Available Run Configurations:**
+The run numbers correspond to entries in the RUN_MAP dictionary in `Minuit_main.py`:
+1. **Run 1**: 150 MeV muon beam data
+2. **Run 2**: 250 MeV muon beam data
+3. **Run 3**: 250 MeV muon beam data with magnetic field
+
+### 4. View Results
+Analysis results are automatically saved in the configured output directory. Use the plotting tools to visualize:
 
 ```bash
 cd plotting_visualization/
 python -c "from plot_utils import plot_from_saved_data; plot_from_saved_data('/path/to/results')"
 ```
 
-### Statistical Comparisons
-Compare MPV values across different beam conditions:
+## Core Components
 
-```bash
-cd comparison_statistics/
-python Muon_MIP_Comparison_Statistical.py
-```
+### RunManager  
+The central data management system that handles:
+- Loading ROOT files from test beam data
+- Intelligent caching system for faster repeated access
+- Configurable pre-filtering and quality cuts
+- Column selection and data type optimization
 
-## Installation and Setup
+**Key Features:**
+- Automatic detection of cached vs. fresh data loading
+- Configurable data paths via `config/runmanager_config.yaml`
+- Support for multiple ROOT file formats and directory structures
+- Built-in data validation and corruption filtering
 
-### Python Environment Setup
-The analysis requires Python 3.7+ with scientific computing libraries. We recommend using Anaconda3.
+### Analysis Pipeline
+The complete analysis workflow:
 
-#### Installing Anaconda3
-1. Download Anaconda3 installer from https://www.anaconda.com/download/
-2. Install Anaconda3:
-```bash
-cd ~/Downloads
-chmod +x Anaconda3-2024.06-1-Linux-x86_64.sh
-./Anaconda3-2024.06-1-Linux-x86_64.sh
-```
-
-#### Creating Analysis Environment
-```bash
-# Create and activate a new conda environment
-conda create --name hgcal_analysis python=3.9
-conda activate hgcal_analysis
-
-# Install required packages
-conda install numpy pandas matplotlib pyyaml
-conda install conda-forge::uproot
-conda install root  # ROOT framework and PyROOT
-```
-
-#### Required Dependencies
-Core dependencies:
-- **numpy** - Numerical computations
-- **pandas** - Data manipulation and analysis
-- **matplotlib** - Plotting and visualization
-- **uproot** - ROOT file I/O in pure Python
-- **scipy** - Scientific computing algorithms
-- **iminuit** - Python interface to Minuit minimizer
-- **landaupy** - Landau and Landau-Gauss distributions
-- **PhyPraKit** - Physics practical toolkit
-
-Optional dependencies:
-- **root** - Full ROOT framework (for legacy utilities)
-- **pyyaml** - Configuration file parsing
-
-Complete dependency information is available in `config/environment_config.yml`.
+1. **Cut Optimization**: Use `findCuts.py` to set optimal data quality cuts
+2. **Data Loading**: RunManager loads and preprocesses test beam data  
+3. **Channel Selection**: Configurable selection of detector chips and channels
+4. **Histogram Generation**: Create ADC amplitude distributions with optimal binning
+5. **Initial Fitting**: Gaussian fit for parameter estimation
+6. **Langaus Fitting**: Landau-Gauss convolution fit using Minuit optimizer
+7. **Bootstrap Analysis**: Statistical error estimation via resampling
+8. **Results Export**: Comprehensive data saved in multiple formats
 
 ## Configuration
 
-The analysis behavior is controlled by configuration files in the `config/` directory:
-- `runmanager_config.yaml` - Data paths and caching settings
-- `dataset_config.yaml` - Dataset-specific parameters and cuts
-- `analysis_config.yaml` - Analysis parameters and fit settings
+The package behavior is controlled by configuration files in `config/`:
 
-Modify these files to adapt the analysis to your data location and requirements.
+### `runmanager_config.yaml`
+- Data file paths and directory structure
+- Caching settings and cache directory location
+- File naming patterns and data organization
 
-## Output Structure
+### `dataset_config.yaml`  
+- Dataset-specific parameters for each run
+- Trigger time windows and ADC thresholds per chip/half
+- Channel mapping and detector geometry information
 
-Analysis results are saved in structured format:
+### Analysis Configuration
+The `active_channels` dictionary in `Minuit_main.py` defines:
+- Which detector chips to analyze (A5: chip 2, B12: chips 3&4)
+- Channel lists for each detector region
+- Plotting dimensions and display parameters
+
+**To analyze different detectors:** Modify the `active_channels` and `RUN_MAP` dictionaries in `Minuit_main.py`.
+
+## Analysis Tools and Utilities
+
+### Interactive Cut Optimization
+**Critical first step before any analysis:**
+
+```bash
+python findCuts.py
+```
+
+**Interactive Controls:**
+- Hover cursor over plots and press keys to set cuts:
+  - `y` - Set lower trigger time cut
+  - `x` - Set upper trigger time cut
+  - `c` - Set ADC threshold cut  
+  - `m` - Save cuts for current chip/half (cursor must be over the plot)
+- Close all figures to complete the process
+
+### Data Validation and Testing
+```bash
+cd testing_examples/
+python test_analysis.py --runs 1 --chips 2
+```
+
+### Statistical Analysis Tools
+```bash
+cd comparison_statistics/  
+# Compare MPV values between different beam conditions
+python Muon_MIP_Comparison_Statistical.py
+```
+
+### Results Summarization
+```bash
+cd utilities/
+python summarize_all_results.py  # Creates consolidated CSV tables
+```
+
+## Installation and Dependencies
+
+### Python Environment Setup
+Requires Python 3.7+ with scientific computing libraries. Anaconda3 is recommended for package management.
+
+```bash
+# Create and activate conda environment
+conda create --name hgcal_mpv python=3.9
+conda activate hgcal_mpv
+
+# Install core scientific packages
+conda install numpy pandas matplotlib scipy pyyaml
+
+# Install specialized packages
+conda install conda-forge::uproot  # ROOT file I/O
+pip install iminuit                 # Minuit minimizer interface
+pip install landaupy              # Landau distribution functions
+pip install PhyPraKit             # Physics analysis toolkit
+
+# Optional: Install ROOT framework for legacy utilities
+conda install root
+```
+
+**Required Dependencies:**
+- `numpy`, `pandas`, `matplotlib` - Core scientific computing
+- `scipy` - Advanced scientific algorithms
+- `uproot` - Pure Python ROOT file reading
+- `iminuit` - Python interface to Minuit minimizer
+- `landaupy` - Landau and Landau-Gauss PDF implementations
+- `PhyPraKit` - Physics practical analysis toolkit
+- `pyyaml` - Configuration file parsing
+
+Complete dependency specifications are in `config/environment_config.yml`.
+
+## Adapting for New Datasets
+
+### 1. Configure Data Paths
+Edit `config/runmanager_config.yaml`:
+```yaml
+runmanager:
+  BASE_PATH: "/path/to/your/data"
+  CACHE_PATH: "./cache"
+```
+
+### 2. Define Your Runs  
+Modify the `RUN_MAP` dictionary in `Minuit_main.py`:
+```python
+RUN_MAP = {
+    1: "your_run_name_1",
+    2: "your_run_name_2", 
+    # Add as many runs as needed
+}
+```
+
+### 3. Configure Detector Channels
+Update the `active_channels` dictionary in `Minuit_main.py` for your detector configuration:
+```python
+active_channels = {
+    "detector_name": {
+        "chip": chip_number,
+        "channels": np.array([list_of_channels]),
+        "pedestal": pedestal_value,
+        "plot_dim": (rows, cols),
+    },
+}
+```
+
+### 4. Set Dataset Parameters
+Create entries in `config/dataset_config.yaml` for each run with appropriate trigger windows and thresholds.
+
+### 5. Optimize Cuts
+Run `python findCuts.py` for each new dataset to determine optimal quality cuts.
+
+## Output Structure and Results
+
+Analysis results are automatically organized in the output directory specified in `Minuit_main.py`:
+
 ```
 output_directory/
-├── run_name/
+├── run_name_1/
 │   └── analysis_results/
-│       ├── complete_results.pkl     # Full analysis data
-│       ├── simplified_results.h5    # Summary statistics
+│       ├── complete_results.pkl     # Full analysis data for plotting
+│       ├── simplified_results.h5    # Tabular summary (HDF5 format)  
 │       └── simplified_results.csv   # Human-readable summary
+└── run_name_2/
+    └── analysis_results/
+        └── ...
 ```
 
-The complete results contain all fitting data for later plotting and analysis. The simplified results provide MPV values, errors, and fit quality metrics in tabular format.
+**File Contents:**
+- **complete_results.pkl**: Full analysis data including histograms, fit curves, and bootstrap results
+- **simplified_results.h5/csv**: MPV values, uncertainties, fit quality metrics, and summary statistics
+- Results can be loaded for further analysis or plotting using tools in `plotting_visualization/`
+
+## Troubleshooting
+
+**Common Issues:**
+1. **Missing cuts configuration**: Always run `findCuts.py` before analysis
+2. **Path errors**: Check data paths in `config/runmanager_config.yaml`  
+3. **Import errors**: Ensure all dependencies are installed in the active environment
+4. **ROOT file access**: Verify file permissions and directory structure
+5. **Memory issues**: Large datasets may require adjusting cache settings or processing fewer runs simultaneously

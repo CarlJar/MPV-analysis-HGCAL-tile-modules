@@ -44,7 +44,7 @@ def collect_all_results():
             print(f"Successfully read {run_name} with {len(df)} entries")
             dfs.append(df)
         except Exception as e:
-            print(f"Error reading {run_name} from {file_path}: {e}")
+            print(f"Error reading {run_name}: {e}")
             continue
     
     if not dfs:
@@ -117,7 +117,7 @@ def save_summaries(summaries, output_path):
 
 def main():
     # Output directory for summaries
-    output_path = "thesis_summary_tables"
+    output_path = "summary_tables"
     
     print("Collecting results from CERN Test Beam 2024...")
     combined_results = collect_all_results()
